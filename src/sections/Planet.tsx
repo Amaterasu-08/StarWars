@@ -4,12 +4,12 @@ import GetInduvisual from "../hooks/GetInduvisual";
 import ResidentCard from "../components/ResidentCard";
 import { useParams } from "react-router-dom";
 
-
 const Planet = () => {
   let { planetId } = useParams();
   const [residents, setResidents] = useState<any[]>([]);
   const [residentsPresent, setResidentsPresent] = useState(false);
   const planetsData = InduvisualPlanetInfo(planetId);
+  console.log(planetsData);
 
   useEffect(() => {
     if (planetsData && planetsData.residents) {
@@ -22,11 +22,15 @@ const Planet = () => {
 
       // Fetch data for each resident
       const fetchResidentsData = async () => {
-        const residentsDataPromises = planetsData.residents.map(
-          (residentUrl: string) => GetInduvisual(residentUrl)
-        );
+        const residentsDataPromises =
+          planetsData &&
+          planetsData.residents &&
+          planetsData.residents.map((residentUrl: string) =>
+            GetInduvisual(residentUrl)
+          );
 
         const residentsData = await Promise.all(residentsDataPromises);
+
         setResidents(residentsData);
       };
       fetchResidentsData();
@@ -54,7 +58,7 @@ const Planet = () => {
       <div className="flex flex-col gap-2">
         {/* Residents section */}
         <p className="text-xl text-white underline">Residents</p>
-        { 
+        {
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {/* Displaying resident cards or message if no residents */}
             {residentsPresent ? (

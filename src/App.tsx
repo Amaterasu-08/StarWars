@@ -3,22 +3,18 @@ import "./index.css";
 import Hero from "./sections/Hero";
 import Planet from "./sections/Planet";
 import { Route, Routes } from "react-router-dom";
-import bgimg from "./assets/images/bg.png"
-
+import background from "./assets/images/bc.png";
 
 function App() {
-  const mystyle = { backgroundImage: `url(${bgimg})`,
-  backgroundSize: 'cover', // Adjust as needed (cover, contain, etc.)
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center center',
-  minHeight: '100vh', // Set a minimum height to cover the entire viewport
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'} 
+  const mystyle = {
+    backgroundImage: `url(${background})`,
+    backgroundSize: "cover", // Adjust as needed (cover, contain, etc.)
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+    minHeight: "100vh", // Set a minimum height to cover the entire viewport
+  };
   return (
-    <main className="relative " style={mystyle}>
-      
-
+    <main style={mystyle}>
       <Navbar />
 
       <Routes>

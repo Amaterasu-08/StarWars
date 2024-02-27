@@ -11,22 +11,20 @@ const Hero = () => {
 
   useEffect(() => {
     if (planetsData) {
-      setPlanetsDataDisplay(planetsData?.result);
+      console.log(planetsData.results);
+      setPlanetsDataDisplay(planetsData?.results);
     }
   }, [planetsData]);
 
   return (
     <section>
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-2">
-          <h2 className="text-4xl font-bold tracking-wider text-white">
-            Visit The Planets
-          </h2>
-          
+      <div className="h-max px-5 py-5 sm:px-10">
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2"></div>
         </div>
-      </div>
-      <div>
-        {planetsDataDisplay.map((item, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:grid-cols-5 ">
+          {planetsDataDisplay &&
+            planetsDataDisplay.map((item, index) => (
               <PlanetCard
                 key={index}
                 value={(currentPageNumber - 1) * 10 + 1 + index}
@@ -37,9 +35,10 @@ const Hero = () => {
                 terrain={item.terrain}
               />
             ))}
+        </div>
       </div>
       <div>
-      <Pagination
+        <Pagination
           setCurrentPageNumber={setCurrentPageNumber}
           currentPageNumber={currentPageNumber}
           totalData={planetsData?.count}
